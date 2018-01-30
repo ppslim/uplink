@@ -98,6 +98,13 @@ class ArgumentAnnotationHandlerBuilder(
         self._argument_types[name] = annotation
         return annotation
 
+    def push_back(self, annotation):
+        try:
+            name = list(self.missing_arguments)[-1]
+        except IndexError:
+            raise ExhaustedArguments(annotation, self._func)
+        return self.add_annotation(annotation, name)
+
     def is_done(self):
         return self.remaining_args_count == 0
 
@@ -158,7 +165,7 @@ class ArgumentAnnotation(interfaces.Annotation):
     can_be_static = True
 
     def __call__(self, request_definition_builder):
-        request_definition_builder.argument_handler_builder.add_annotation(self)
+        request_definition_builder.argument_handler_builder.push_back(self)
         return request_definition_builder
 
     def modify_request_definition(self, request_definition_builder):

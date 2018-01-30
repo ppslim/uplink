@@ -170,7 +170,7 @@ class TestArgumentAnnotation(object):
         annotation = types.ArgumentAnnotation()
         return_value = annotation(request_definition_builder)
         handler_builder = request_definition_builder.argument_handler_builder
-        handler_builder.add_annotation.assert_called_with(annotation)
+        handler_builder.push_back.assert_called_with(annotation)
         assert return_value is request_definition_builder
 
 
