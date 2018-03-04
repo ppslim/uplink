@@ -24,7 +24,8 @@ install_requires = [
 extras_require = {
     "aiohttp": ["aiohttp>=2.3.0"],
     "twisted": ["twisted>=17.1.0"],
-    "marshmallow": ["marshmallow>=2.15.0"]
+    "marshmallow": ["marshmallow>=2.15.0"],
+    "dexml": ["dexml==0.5.1", "defusedxml==0.5.0"]
 }
 
 metadata = dict({
